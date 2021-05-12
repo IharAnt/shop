@@ -10,6 +10,12 @@ import { areArgumentsShallowlyEqual } from './helpers.js'
  * (JavaScript, Perl, PHP, Python, Ruby, Lua).
  */
 export function toUpper(sourceFn) {
+
+    return function () {
+        const arrayArg = Array.from(arguments)
+        return sourceFn.apply(this, arrayArg.map(element => element.toUpperCase()))
+        // Замкнули sourceFn
+    }
     // подсказка чтобы получить аргументы функции массивом const argsArray = Array.from(arguments)
 }
 
